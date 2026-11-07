@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#08091c">
+  <meta name="description" content="Một bất ngờ sinh nhật dành cho Em bé iu.">
+  <title>Birthday Surprise — Em bé iu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <audio id="backgroundMusic" loop preload="auto">
+      <source src="assets/music/radio.mp3" type="audio/mpeg">
+      Trình duyệt không hỗ trợ phát âm thanh.
+  </audio>
+
+  <canvas id="universe" aria-hidden="true"></canvas>
+  <canvas id="effects" aria-hidden="true"></canvas>
+  <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Về đầu trang"><span class="brand-mark">✦</span> A LITTLE SURPRISE</a>
+    <div class="top-actions">
+      <span class="sound-note" id="soundNote">Âm nhạc đang tắt</span>
+      <button class="icon-button" id="musicToggle" aria-label="Bật nhạc">♫</button>
+      <button class="menu-button" id="menuToggle" aria-label="Mở điều hướng">☰</button>
+    </div>
+  </header>
+
+  <nav class="quick-nav" id="quickNav">
+    <a href="#home">Trang đầu</a><a href="#letter">Lá thư</a><a href="#memories">Kỷ niệm</a><a href="#cake">Sinh nhật</a><a href="#gift">Món quà</a>
+  </nav>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-inner">
+        <div class="pill reveal"><span class="live-dot"></span> HÔM NAY LÀ NGÀY ĐẶC BIỆT</div>
+        <div class="hero-orbit reveal" aria-hidden="true">
+          <div class="orbit-ring ring-one"></div><div class="orbit-ring ring-two"></div>
+          <div class="orbit-ring ring-three"></div>
+          <span class="orbit-star star-one">✧</span><span class="orbit-star star-two">✦</span>
+          <div class="hero-heart">♡</div>
+        </div>
+        <p class="hero-overline reveal">Một lời chúc được gửi đến</p>
+        <h1 class="hero-title reveal">Chúc mừng sinh nhật<br><em>Em bé iu</em></h1>
+        <p class="hero-subtitle reveal">Một ngày thật dịu dàng, thật rực rỡ<br>và ngập tràn những điều đáng nhớ.</p>
+        <div class="hero-date reveal"><span>✦</span> 09 / 11 / 2026 <span>✦</span></div>
+        <a class="glow-button reveal" href="#letter"><span>Khám phá bất ngờ</span><b>↘</b></a>
+        <div class="from-line reveal">Được chuẩn bị bởi <span>Trọng Vĩ</span></div>
+      </div>
+      <a class="scroll-cue" href="#letter"><span class="scroll-mouse"></span><span>CUỘN XUỐNG ĐỂ KHÁM PHÁ</span></a>
+      <div class="hero-side-label">A DAY TO REMEMBER · 2026</div>
+    </section>
+
+    <section class="section letter-section" id="letter">
+      <div class="section-heading reveal">
+        <span class="section-index">01 / A LITTLE NOTE</span>
+        <h2>Một chút <em>yêu thương</em></h2>
+        <p>Một lời nhắn nhủ cho em bé iu.</p>
+      </div>
+      <button class="envelope-button reveal" id="envelopeButton" aria-label="Mở phong thư">
+        <span class="envelope-aura"></span>
+        <span class="envelope">
+          <span class="envelope-back"></span><span class="letter-paper"><span>Gửi em bé iu ♡</span><small>Một lời chúc dành riêng cho em</small></span>
+          <span class="envelope-flap"></span><span class="envelope-front"></span>
+          <span class="wax-seal">♡</span>
+        </span>
+        <span class="envelope-hint" id="envelopeHint">NHẤN ĐỂ MỞ THƯ</span>
+      </button>
+      <article class="letter-message" id="letterMessage" aria-hidden="true">
+        <div class="message-card">
+          <span class="message-spark">✧</span>
+          <div class="message-heart">♡</div>
+          <h3>Gửi em bé iu,</h3>
+          <p>Chúc em có một ngày sinh nhật thật vui vẻ, ấm áp và tràn đầy những điều dễ thương. Mong tuổi mới sẽ mang đến cho em nhiều trải nghiệm đẹp, những cơ hội mới và thật nhiều lý do để mỉm cười.</p>
+          <p>Hãy luôn tự tin, vui vẻ và dành thời gian cho những điều khiến em hạnh phúc nhé. Chúc mọi điều tốt đẹp sẽ tìm đến em!</p>
+          <div class="message-signoff">Thân gửi, <strong>Thu Ngân</strong> ♡</div>
+          <button class="text-button" id="closeLetter">Gấp lá thư lại ↑</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="section memories-section" id="memories">
+      <div class="section-heading reveal">
+        <span class="section-index">02 / LITTLE MOMENTS</span>
+        <h2>Những khoảnh khắc <em>đáng nhớ</em></h2>
+        <p>Một góc nhỏ để lưu giữ những bức ảnh thật đẹp.</p>
+      </div>
+      <div class="photo-gallery">
+        <button class="photo-card photo-one reveal" data-photo="0" aria-label="Xem ảnh kỷ niệm thứ nhất">
+          <img src="assets/images/pic-1.jpg" alt="Kỷ niệm của chúng mình">
+          <span class="photo-caption">Một ngày thật vui</span>
+        </button>
+        <button class="photo-card photo-two reveal" data-photo="1" aria-label="Xem ảnh kỷ niệm thứ hai">
+          <img src="assets/images/pic-2.jpg" alt="Kỷ niệm của chúng mình">
+        </span><span class="photo-caption">Khoảnh khắc đáng yêu</span>
+        </button>
+        <button class="photo-card photo-three reveal" data-photo="2" aria-label="Xem ảnh kỷ niệm thứ ba">
+          <img src="assets/images/pic-3.jpg" alt="Kỷ niệm của chúng mình">
+          </span><span class="photo-caption">Một kỷ niệm đẹp</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="section cake-section" id="cake">
+      <div class="section-heading reveal">
+        <span class="section-index">03 / MAKE A WISH</span>
+        <h2>Thổi nến và <em>ước nguyện</em></h2>
+        <p>Một điều ước nho nhỏ đang chờ em.</p>
+      </div>
+      <div class="cake-stage reveal">
+        <div class="cake-glow"></div>
+        <div class="cake">
+          <div class="candles">
+            <button class="candle" aria-label="Thổi nến thứ nhất"><i class="flame"></i><span></span></button>
+            <button class="candle" aria-label="Thổi nến thứ hai"><i class="flame"></i><span></span></button>
+            <button class="candle" aria-label="Thổi nến thứ ba"><i class="flame"></i><span></span></button>
+          </div>
+          <div class="cake-top"></div><div class="cake-layer layer-top"></div><div class="cake-layer layer-bottom"></div>
+          <div class="cake-plate"></div>
+        </div>
+        <p class="wish-instruction" id="wishInstruction">Nhấn vào từng ngọn nến để thổi tắt nhé!</p>
+        <p class="wish-complete" id="wishComplete">Điều ước đã được gửi đến vũ trụ ✨</p>
+      </div>
+      <button class="outline-button reveal" id="confettiButton">Bắn pháo giấy ✦</button>
+    </section>
+
+    <section class="section gift-section" id="gift">
+      <div class="section-heading reveal">
+        <span class="section-index">04 / ONE MORE SURPRISE</span>
+        <h2>Món quà <em>bí mật</em></h2>
+        <p>Điều bất ngờ cuối cùng đang nằm trong chiếc hộp này.</p>
+      </div>
+      <button class="gift-button reveal" id="giftButton" aria-label="Mở hộp quà">
+        <span class="gift-rays"></span>
+        <span class="gift-box"><span class="gift-lid"></span><span class="gift-base"></span><span class="gift-ribbon-v"></span><span class="gift-ribbon-h"></span><span class="gift-bow">∞</span></span>
+        <span class="gift-hint" id="giftHint">CHẠM ĐỂ MỞ QUÀ</span>
+      </button>
+      <div class="gift-reveal" id="giftReveal" aria-hidden="true">
+        <div class="gift-star">✧</div><h3>Chúc em tuổi mới<br><em>rực rỡ như những vì sao!</em></h3>
+        <p>Mong mỗi ngày đều có một điều nhỏ bé khiến em vui.</p>
+        <span class="gift-from">— Thu Ngân ♡</span>
+        <button class="text-button" id="celebrateAgain">Bùm bùmmm ✦</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-star">✧</div>
+    <p>Made with care, for <span>Em bé iu</span></p>
+    <small>09 · 11 · 2026 &nbsp; — &nbsp; Thu Ngân</small>
+  </footer>
+
+  <audio id="backgroundMusic" loop preload="none">
+    <source src="assets/music/piano.mp3" type="audio/mpeg">
+  </audio>
+  <script src="js/main.js"></script>
+</body>
+</html>
