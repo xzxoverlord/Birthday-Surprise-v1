@@ -204,3 +204,118 @@ musicToggle.addEventListener('click',async()=>{
 if(!reducedMotion){
   setTimeout(()=>addConfetti(innerWidth/2,innerHeight*.27,35),1100);
 }
+
+
+/* ===== INFINITE MEMORIES CAROUSEL ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+    const gallery = document.getElementById("photoGallery");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+
+    if (!gallery || !nextBtn || !prevBtn) return;
+
+    // Lưu lại 9 ảnh gốc
+    const originalItems = Array.from(gallery.children);
+
+    if (originalItems.length === 0) return;
+
+    // Tạo hai bản sao để tạo hiệu ứng vô hạn
+    const beforeClones = originalItems.map(item => {
+        const clone = item.cloneNode(true);
+        clone.dataset.carouselClone = "true";
+        return clone;
+    });
+
+    const afterClones = originalItems.map(item => {
+        const clone = item.cloneNode(true);
+        clone.dataset.carouselClone = "true";
+        return clone;
+    });
+
+    // Thêm bản sao vào đầu và cuối
+    beforeClones.reverse().forEach(item => {
+        gallery.prepend(item);
+    });
+
+    afterClones.forEach(item => {
+        gallery.append(item);
+    });
+
+    let cycleWidth = 0;
+    let isResetting = false;
+
+    function getCycleWidth() {
+        return gallery.scrollWidth / 3;
+    }
+
+    function jumpTo(position) {
+        isResetting = true;
+
+        gallery.style.scrollBehavior = "auto";
+        gallery.scrollLeft = position;
+
+        requestAnimationFrame(() => {
+            gallery.style.scrollBehavior = "smooth";
+            isResetting = false;
+        });
+    }
+
+    function initializeGallery() {
+        cycleWidth = getCycleWidth();
+
+        // Đặt vị trí ban đầu tại bộ 9 ảnh chính giữa
+        jumpTo(cycleWidth);
+    }
+
+    // Tính khoảng cách chuyển một ảnh
+    function getStep() {
+        const firstCard = gallery.querySelector(".photo-card");
+
+        if (!firstCard) return 238;
+
+        const style = getComputedStyle(gallery);
+        const gap = parseFloat(style.columnGap) || 0;
+
+        return firstCard.getBoundingClientRect().width + gap;
+    }
+
+    nextBtn.addEventListener("click", function () {
+        gallery.scrollBy({
+            left: getStep(),
+            behavior: "smooth"
+        });
+    });
+
+    prevBtn.addEventListener("click", function () {
+        gallery.scrollBy({
+            left: -getStep(),
+            behavior: "smooth"
+        });
+    });
+
+    // Kiểm tra vị trí để tạo vòng lặp vô hạn
+    gallery.addEventListener("scroll", function () {
+        if (isResetting) return;
+
+        const position = gallery.scrollLeft;
+
+        if (position < cycleWidth * 0.5) {
+            jumpTo(position + cycleWidth);
+        }
+
+        if (position > cycleWidth * 1.5) {
+            jumpTo(position - cycleWidth);
+        }
+    });
+
+    // Khởi tạo sau khi trình duyệt tính toán kích thước
+    requestAnimationFrame(initializeGallery);
+
+    // Cập nhật khi thay đổi kích thước màn hình
+    window.addEventListener("resize", function () {
+        cycleWidth = getCycleWidth();
+        jumpTo(cycleWidth);
+    });
+});
+
